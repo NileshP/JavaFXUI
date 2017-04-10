@@ -21,7 +21,7 @@ public class TestUI extends Application {
     }
     
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) {/*
         
         primaryStage.setTitle("example Gui");
   
@@ -85,5 +85,5 @@ public class TestUI extends Application {
         Scene appScene = new Scene(tilePane,500,500);
         primaryStage.setScene(appScene);
         primaryStage.show();
-    }
+    */}
 }

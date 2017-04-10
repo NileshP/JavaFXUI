@@ -10,13 +10,17 @@ import twitter4j.StatusDeletionNotice;
 import twitter4j.StatusListener;
 import twitter4j.json.DataObjectFactory;
 
+@SuppressWarnings("deprecation")
 public class CustomStatusListener implements StatusListener {
 
-	Classify classify;
+	private Classify classify;
+	private MainRunner mainRunner;
+	
 
 	public CustomStatusListener(Classify classify,MainRunner mainRunner) {
 
 		this.classify = classify;
+		this.mainRunner = mainRunner;
 
 	}
 
@@ -24,13 +28,12 @@ public class CustomStatusListener implements StatusListener {
 	@Override
 	public void onStatus(Status status) {
 
-		String jsonString = DataObjectFactory.getRawJSON(status);
 		
 		String sentiment = classify.test(status.getText());
 
-		Tweet tweet = new Tweet(status.getId(), status.getUser().getName(), sentiment);
+		Tweet tweet = new Tweet(status.getId(), status.getUser().getName(), sentiment,status.getText(),status.getUser().getMiniProfileImageURL());
 		
-		
+		mainRunner.updateUI(tweet);
 		
 		
 		
