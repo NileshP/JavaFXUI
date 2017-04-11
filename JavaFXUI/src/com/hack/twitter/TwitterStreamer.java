@@ -1,6 +1,7 @@
 package com.hack.twitter;
 
 import com.hack.main.MainRunner;
+import com.hack.main.UIUpdator;
 import com.hack.nlpprocessor.Classify;
 import com.hack.util.DBUtil;
 
@@ -12,9 +13,9 @@ public class TwitterStreamer {
 
 	Classify classify;
 	Configuration conf;
-	MainRunner mainRunner;
+	UIUpdator mainRunner;
 
-	public TwitterStreamer(Classify classify, MainRunner mainRunner,
+	public TwitterStreamer(Classify classify, UIUpdator mainRunner,
 			Configuration conf) {
 
 		this.classify = classify;

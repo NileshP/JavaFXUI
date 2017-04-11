@@ -37,9 +37,9 @@ public class CustomImage extends StackPane {
 
 		Circle circle = new Circle(5, 5, 5);
 
-		if (sentiment.equalsIgnoreCase("POS")) {
+		if (sentiment.equalsIgnoreCase("A")) {
 			circle.setFill(Color.GREEN);
-		} else if (sentiment.equalsIgnoreCase("NEG")) {
+		} else if (sentiment.equalsIgnoreCase("I")) {
 			circle.setFill(Color.RED);
 		} else if (sentiment.equalsIgnoreCase("NEU")) {
 			circle.setFill(Color.ORANGE);

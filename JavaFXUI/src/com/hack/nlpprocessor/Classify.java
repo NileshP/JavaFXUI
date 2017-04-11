@@ -1,17 +1,16 @@
 package com.hack.nlpprocessor;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.hack.util.PropertiesReader;
+
 
 import opennlp.tools.doccat.DoccatModel;
 import opennlp.tools.doccat.DocumentCategorizerEvaluator;
 import opennlp.tools.doccat.DocumentCategorizerME;
 import opennlp.tools.doccat.DocumentSample;
-import opennlp.tools.util.InvalidFormatException;
+import opennlp.tools.util.InvalidFormatException; 
 
 public class Classify {
 	
@@ -19,7 +18,7 @@ public class Classify {
 	DocumentCategorizerEvaluator modelEvaluator;
 	
 	public Classify() throws InvalidFormatException, IOException {
-		String classificationModelFilePath = PropertiesReader.modelPath;
+		String classificationModelFilePath = "C:\\Users\\Mallinath\\JAVAFXUI\\git\\JavaFXUI\\tweetsModelTwoCat";
 		InputStream is = new FileInputStream(classificationModelFilePath);
 		DoccatModel classificationModel = new DoccatModel(is);
 	    classificationME = new DocumentCategorizerME(
@@ -41,7 +40,7 @@ public class Classify {
 				.getBestCategory(classDistribution);
 		modelEvaluator.evaluateSample(sample);
 		
-		//System.out.println(predictedCategory);
+		System.out.println(predictedCategory);
 		return predictedCategory;
 	}
 	

@@ -1,23 +1,22 @@
 package com.hack.twitter;
 
-import com.hack.bean.Tweet;
-import com.hack.main.MainRunner;
-import com.hack.nlpprocessor.Classify;
-
 import twitter4j.StallWarning;
 import twitter4j.Status;
 import twitter4j.StatusDeletionNotice;
 import twitter4j.StatusListener;
-import twitter4j.json.DataObjectFactory;
+
+import com.hack.bean.Tweet;
+import com.hack.main.UIUpdator;
+import com.hack.nlpprocessor.Classify;
 
 @SuppressWarnings("deprecation")
 public class CustomStatusListener implements StatusListener {
 
 	private Classify classify;
-	private MainRunner mainRunner;
+	private UIUpdator mainRunner;
 	
 
-	public CustomStatusListener(Classify classify,MainRunner mainRunner) {
+	public CustomStatusListener(Classify classify,UIUpdator mainRunner) {
 
 		this.classify = classify;
 		this.mainRunner = mainRunner;
@@ -28,12 +27,25 @@ public class CustomStatusListener implements StatusListener {
 	@Override
 	public void onStatus(Status status) {
 
+		if(classify == null){
+			
+			System.out.println("classify is null");
+		}
 		
 		String sentiment = classify.test(status.getText());
 
 		Tweet tweet = new Tweet(status.getId(), status.getUser().getName(), sentiment,status.getText(),status.getUser().getMiniProfileImageURL());
 		
-		mainRunner.updateUI(tweet);
+		
+		if(mainRunner==null){
+			
+			System.out.println("uiupdator is null");
+		}else{
+			
+			mainRunner.updateUI(tweet);
+		}
+		
+		
 		
 		
 		

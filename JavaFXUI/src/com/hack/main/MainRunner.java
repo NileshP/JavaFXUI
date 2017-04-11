@@ -6,16 +6,12 @@ import java.util.Random;
 
 import javafx.application.Application;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.TilePane;
-import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -33,39 +29,17 @@ public class MainRunner extends Application {
 	private TwitterConfiguration configuration;
 	private ObservableList<Node> childs;
 	
-	public boolean Initialise() {
-
-		try {
-
-			classify = new Classify();
-			configuration = new TwitterConfiguration();
-
-			return true;
-		} catch (Exception e) {
-
-			e.printStackTrace();
-
-			return false;
-		}
-
-	}
 
 	public static void main(String[] args) throws FileNotFoundException,
 			IOException {
-
-		MainRunner mainRunner = new MainRunner();
-		
-		mainRunner.Initialise();
-		
 		launch(args);
-
 	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
         
 		
-		
+		UIUpdator uiUpdator = new UIUpdator();
 		
         primaryStage.setTitle("example Gui");
         
@@ -100,7 +74,7 @@ public class MainRunner extends Application {
         tilePane.setHgap(2);
         tilePane.setVgap(2);
         
-        childs =  tilePane.getChildren();
+        uiUpdator.childs =  tilePane.getChildren();
       
         tilePane.setTileAlignment(Pos.TOP_LEFT);
        
@@ -110,17 +84,16 @@ public class MainRunner extends Application {
         
         configuration = new TwitterConfiguration();
         
-        streamer = new TwitterStreamer(classify, this, configuration.getTwitterStreamConf());
+        classify = new Classify();
+		configuration = new TwitterConfiguration();
+
+		System.out.println("initialization completed");
         
-        primaryStage.show();
+		primaryStage.show();
+		
+		streamer = new TwitterStreamer(classify, uiUpdator, configuration.getTwitterStreamConf());
     }
 
-	public void updateUI(Tweet tweet) {
-		Random random = new Random(1);
-		int index = random.nextInt(100);
-		
-		CustomImage customImage = (CustomImage) childs.get(index);
-		customImage.setTweet(tweet);
-	}
+	
 
 }
