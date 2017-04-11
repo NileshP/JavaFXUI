@@ -28,6 +28,7 @@ public class MainRunner extends Application {
 	private Classify classify;
 	private TwitterConfiguration configuration;
 	private ObservableList<Node> childs;
+	UIUpdator uiUpdator = new UIUpdator();
 	
 
 	public static void main(String[] args) throws FileNotFoundException,
@@ -39,7 +40,7 @@ public class MainRunner extends Application {
 	public void start(Stage primaryStage) throws Exception {
         
 		
-		UIUpdator uiUpdator = new UIUpdator();
+		
 		
         primaryStage.setTitle("example Gui");
         
@@ -87,9 +88,10 @@ public class MainRunner extends Application {
         classify = new Classify();
 		configuration = new TwitterConfiguration();
 
+		primaryStage.show();
 		System.out.println("initialization completed");
         
-		primaryStage.show();
+		
 		
 		streamer = new TwitterStreamer(classify, uiUpdator, configuration.getTwitterStreamConf());
     }
