@@ -18,8 +18,8 @@ public class Classify {
 	DocumentCategorizerEvaluator modelEvaluator;
 	
 	public Classify() throws InvalidFormatException, IOException {
-		String classificationModelFilePath = "tweetmodelnew";
-		InputStream is = new FileInputStream(classificationModelFilePath);
+		String classificationModelFilePath = "/tweetsModelTwoCat";
+		InputStream is = getClass().getResourceAsStream(classificationModelFilePath);
 		DoccatModel classificationModel = new DoccatModel(is);
 	    classificationME = new DocumentCategorizerME(
 				classificationModel);
