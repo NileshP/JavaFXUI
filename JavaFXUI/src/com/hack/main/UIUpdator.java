@@ -12,12 +12,18 @@ public class UIUpdator {
 	public ObservableList<Node> childs;
 	
 	public void updateUI(Tweet tweet) {
-		Random random = new Random(1);
+		Random random = new Random();
 		int index = random.nextInt(90);
+		
+		System.out.println(index);
 		
 		CustomImage customImage = (CustomImage) childs.get(index);
 		customImage.setTweet(tweet);
+		
+		
+		
 	}
+	
 	
 	
 	

@@ -6,6 +6,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -17,6 +18,7 @@ public class CustomImage extends StackPane {
 
 	private ImageView imageView;
 	private Tweet tweet;
+	private Circle circle;
 
 	public CustomImage(String sentiment, Tweet tweet) {
 
@@ -35,17 +37,10 @@ public class CustomImage extends StackPane {
 
 		HBox box = new HBox(95);
 
-		Circle circle = new Circle(5, 5, 5);
+		circle = new Circle(5, 5, 5);
 
-		if (sentiment.equalsIgnoreCase("A")) {
-			circle.setFill(Color.GREEN);
-		} else if (sentiment.equalsIgnoreCase("I")) {
-			circle.setFill(Color.RED);
-		} else if (sentiment.equalsIgnoreCase("NEU")) {
-			circle.setFill(Color.ORANGE);
-		} else {
-			circle.setFill(Color.GREY);
-		}
+		circle.setFill(Color.GREY);
+		
 		circle.setLayoutX(50);
 		circle.setLayoutY(10);
 
@@ -75,7 +70,18 @@ public class CustomImage extends StackPane {
 		this.tweet = tweet;
 		Image image = new Image(tweet.getTweetImageURL());
 		getImageView().setImage(image);
+		if (tweet.getSentiment().equalsIgnoreCase("A")) {
+			circle.setFill(Color.RED);
+		} else if (tweet.getSentiment().equalsIgnoreCase("I")) {
+			circle.setFill(Color.GREEN);
+		} else if (tweet.getSentiment().equalsIgnoreCase("NEU")) {
+			circle.setFill(Color.ORANGE);
+		} else {
+			circle.setFill(Color.GREY);
+		}
+		Tooltip.install(this,new Tooltip(tweet.getTweetUserName()+"  "+tweet.getTweetText()));
 	}
+	
 
 	public ImageView getImageView() {
 		return imageView;

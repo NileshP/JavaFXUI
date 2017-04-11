@@ -22,13 +22,13 @@ public class TwitterConfiguration {
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 
 		cb.setDebugEnabled(true)
-				.setOAuthConsumerKey("P2fBwot5lFqMmh8lqoSnluXUN")
+				.setOAuthConsumerKey("Tm0ba0XKruBjmiEtqucGDRyaP")
 				.setOAuthConsumerSecret(
-						"HhLhEW5ohWGWBe7Ty4tFDBFAx8juJ6Nm3tIB8PbQWs95Oe1Jnx")
+						"umU7giJcuvtZG1PXKpmBh1H3TCBWaTYZOgsgFrDOpIm5hjBcF2")
 				.setOAuthAccessToken(
-						"167811448-q0SO4qkIyXdqlfd6HhrdQlEVVskBeJzD8KfmykNf")
+						"167811448-t0foEaTlKMaagRrOwtaqeTYZe1BzdCBtP2By6W3r")
 				.setOAuthAccessTokenSecret(
-						"Nv40dqkQXRZ32937h1g62IlRQ0G9tWgWV0AIXZAwD4llo")
+						"VU8wKKoj7w5uFsF5gv8xW1i6uwMAanW0DtRpPfPUa5IMU")
 				.setHttpRetryCount(2)
 				.setJSONStoreEnabled(true);
 		

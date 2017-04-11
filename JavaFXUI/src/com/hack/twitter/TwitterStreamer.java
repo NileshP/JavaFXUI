@@ -14,19 +14,27 @@ public class TwitterStreamer {
 	Classify classify;
 	Configuration conf;
 	UIUpdator mainRunner;
+	CustomStatusListener customStatusListener;
 
-	public TwitterStreamer(Classify classify, UIUpdator mainRunner,
+	public CustomStatusListener getCustomStatusListener() {
+		return customStatusListener;
+	}
+
+	public void setCustomStatusListener(CustomStatusListener customStatusListener) {
+		this.customStatusListener = customStatusListener;
+	}
+
+	public TwitterStreamer(Classify classify,
 			Configuration conf) {
 
 		this.classify = classify;
 		this.conf = conf;
 
-		CustomStatusListener listener = new CustomStatusListener(this.classify,
-				this.mainRunner);
+		customStatusListener = new CustomStatusListener(this.classify);
 
 		twitter4j.TwitterStream twitterStream = new TwitterStreamFactory(
 				this.conf).getInstance();
-		twitterStream.addListener(listener);
+		twitterStream.addListener(customStatusListener);
 
 		FilterQuery filtre = new FilterQuery();
 		String[] keywordsArray = { "@RailMinIndia" };
@@ -34,5 +42,8 @@ public class TwitterStreamer {
 		twitterStream.filter(filtre);
 
 	}
+	
+	
+	
 
 }
